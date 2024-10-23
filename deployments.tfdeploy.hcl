@@ -2,8 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 identity_token "azurerm" {
-  # audience = ["api://AzureADTokenExchange"]
-  audience = ["stacks-demo"]
+  audience = ["api://AzureADTokenExchange"]
 }
 
 deployment "dev" {
