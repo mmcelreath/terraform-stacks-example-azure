@@ -62,7 +62,7 @@ resource "azuread_application_federated_identity_credential" "tfc_federated_cred
 
   application_id = azuread_application.tfc_application.id
   display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-plan"
-  audiences      = [var.tfc_audience]
+  audiences      = ["api://AzureADTokenExchange"]
   issuer         = "https://${var.tfc_hostname}"
   subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:plan"
 }
@@ -76,7 +76,7 @@ resource "azuread_application_federated_identity_credential" "tfc_federated_cred
 
   application_id = azuread_application.tfc_application.id
   display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-apply"
-  audiences      = [var.tfc_audience]
+  audiences      = ["api://AzureADTokenExchange"]
   issuer         = "https://${var.tfc_hostname}"
   subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:apply"
 }

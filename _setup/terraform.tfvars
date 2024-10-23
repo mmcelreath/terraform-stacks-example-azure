@@ -1,6 +1,5 @@
 
 tfc_hostname = "app.terraform.io"
-tfc_audience = "api://AzureADTokenExchange"
 
 tfc_organization_name = "automation-creations"
 tfc_project_name      = "Stacks-Beta"
