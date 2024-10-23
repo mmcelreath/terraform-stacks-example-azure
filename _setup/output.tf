@@ -21,12 +21,12 @@ output "oidc_client_id" {
   value       = azuread_service_principal.tfc_service_principal.client_id
 }
 
-output "credentials_apply" {
-  description = "Credentials to authenticate to Azure for the `apply` run phase."
-  value       = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
-}
+# output "credentials_apply" {
+#   description = "Credentials to authenticate to Azure for the `apply` run phase."
+#   value       = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
+# }
 
-output "credentials_plan" {
-  description = "Credentials to authenticate to Azure for the `plan` run phase."
-  value       = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
-}
+# output "credentials_plan" {
+#   description = "Credentials to authenticate to Azure for the `plan` run phase."
+#   value       = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
+# }
