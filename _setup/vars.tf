@@ -24,18 +24,18 @@ variable "tfc_project_name" {
 }
 
 variable "tfc_stack_name" {
-  type = string
+  type        = string
   description = "The name of the stack to create"
-  default = "azure-kubernetes-demo"
+  default     = "azure-kubernetes-demo"
 }
 
 variable "tfc_stack_deployments" {
-  type = list(string)
+  type        = list(string)
   description = "Name of the stack deployment"
   # default = ["dev", "qa", "prod"]  
 }
 
 variable "github_token" {
-  type = string
+  type      = string
   sensitive = true
 }

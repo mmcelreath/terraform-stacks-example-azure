@@ -60,11 +60,11 @@ resource "azurerm_role_assignment" "tfc_role_assignment" {
 resource "azuread_application_federated_identity_credential" "tfc_federated_credential_plan" {
   for_each = toset(var.tfc_stack_deployments)
 
-  application_id        = azuread_application.tfc_application.id
-  display_name          = "${azuread_application.tfc_application.display_name}-${each.key}-plan"
-  audiences             = [var.tfc_audience]
-  issuer                = "https://${var.tfc_hostname}"
-  subject               = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:plan"
+  application_id = azuread_application.tfc_application.id
+  display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-plan"
+  audiences      = [var.tfc_audience]
+  issuer         = "https://${var.tfc_hostname}"
+  subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:plan"
 }
 
 # Creates a federated identity credential which ensures that the given
@@ -74,9 +74,9 @@ resource "azuread_application_federated_identity_credential" "tfc_federated_cred
 resource "azuread_application_federated_identity_credential" "tfc_federated_credential_apply" {
   for_each = toset(var.tfc_stack_deployments)
 
-  application_id        = azuread_application.tfc_application.id
-  display_name          = "${azuread_application.tfc_application.display_name}-${each.key}-apply"
-  audiences             = [var.tfc_audience]
-  issuer                = "https://${var.tfc_hostname}"
-  subject               = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:apply"
+  application_id = azuread_application.tfc_application.id
+  display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-apply"
+  audiences      = [var.tfc_audience]
+  issuer         = "https://${var.tfc_hostname}"
+  subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:apply"
 }

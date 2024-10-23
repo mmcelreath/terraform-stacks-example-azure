@@ -8,25 +8,25 @@
 
 output "subscription_id" {
   description = "Value for `subscription_id` attribute of `azurearm` provider config in the Stack."
-  value = data.azurerm_subscription.current.subscription_id
+  value       = data.azurerm_subscription.current.subscription_id
 }
 
 output "tenant_id" {
   description = "Value for `tenant_id` attribute of `azurearm` provider config in the Stack."
-  value = data.azurerm_subscription.current.tenant_id
+  value       = data.azurerm_subscription.current.tenant_id
 }
 
 output "oidc_client_id" {
   description = "Value for `client_id` attribute of `azurearm` provider config in the Stack."
-  value = azuread_service_principal.tfc_service_principal.client_id
+  value       = azuread_service_principal.tfc_service_principal.client_id
 }
 
 output "credentials_apply" {
   description = "Credentials to authenticate to Azure for the `apply` run phase."
-  value = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
+  value       = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
 }
 
 output "credentials_plan" {
   description = "Credentials to authenticate to Azure for the `plan` run phase."
-  value = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
+  value       = azuread_application_federated_identity_credential.tfc_federated_credential_apply[*]
 }

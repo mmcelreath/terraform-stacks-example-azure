@@ -29,9 +29,9 @@
 #
 
 resource "random_string" "demo" {
-  length = 4
+  length  = 4
   special = false
-  upper = false
+  upper   = false
 }
 
 locals {
