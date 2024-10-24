@@ -56,7 +56,7 @@ resource "tfe_stack" "demo" {
 
   vcs_repo {
     branch         = "main"
-    identifier     = "mmcelreath/azure-stacks-example"
+    identifier     = "mmcelreath/terraform-stacks-example-azure"
     oauth_token_id = tfe_oauth_client.demo.oauth_token_id
   }
 
