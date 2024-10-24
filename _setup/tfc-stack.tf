@@ -35,7 +35,7 @@ resource "random_string" "demo" {
 }
 
 locals {
-  stack_name = "${var.tfc_stack_name}-${random_string.demo.result}"
+  stack_name = "${var.tfc_stack_name}"
 }
 
 # Runs in this stack will be automatically authenticated
@@ -49,7 +49,7 @@ resource "tfe_stack" "demo" {
 
   vcs_repo {
     branch         = "main"
-    identifier     = "alexsomesan/aks-deferred-stack"
+    identifier     = "mmcelreath/azure-stacks-example"
     oauth_token_id = tfe_oauth_client.demo.oauth_token_id
   }
 

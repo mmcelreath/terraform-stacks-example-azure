@@ -53,30 +53,30 @@ resource "azurerm_role_assignment" "tfc_role_assignment" {
   role_definition_name = "Contributor"
 }
 
-# # Creates a federated identity credential which ensures that the given
-# # workspace will be able to authenticate to Azure for the "plan" run phase.
-# #
-# # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential
-# resource "azuread_application_federated_identity_credential" "tfc_federated_credential_plan" {
-#   for_each = toset(var.tfc_stack_deployments)
+# Creates a federated identity credential which ensures that the given
+# workspace will be able to authenticate to Azure for the "plan" run phase.
+#
+# https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential
+resource "azuread_application_federated_identity_credential" "tfc_federated_credential_plan" {
+  for_each = toset(var.tfc_stack_deployments)
 
-#   application_id = azuread_application.tfc_application.id
-#   display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-plan"
-#   audiences      = ["api://AzureADTokenExchange"]
-#   issuer         = "https://${var.tfc_hostname}"
-#   subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:plan"
-# }
+  application_id = azuread_application.tfc_application.id
+  display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-plan"
+  audiences      = ["api://AzureADTokenExchange"]
+  issuer         = "https://${var.tfc_hostname}"
+  subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:plan"
+}
 
-# # Creates a federated identity credential which ensures that the given
-# # workspace will be able to authenticate to Azure for the "apply" run phase.
-# #
-# # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential
-# resource "azuread_application_federated_identity_credential" "tfc_federated_credential_apply" {
-#   for_each = toset(var.tfc_stack_deployments)
+# Creates a federated identity credential which ensures that the given
+# workspace will be able to authenticate to Azure for the "apply" run phase.
+#
+# https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential
+resource "azuread_application_federated_identity_credential" "tfc_federated_credential_apply" {
+  for_each = toset(var.tfc_stack_deployments)
 
-#   application_id = azuread_application.tfc_application.id
-#   display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-apply"
-#   audiences      = ["api://AzureADTokenExchange"]
-#   issuer         = "https://${var.tfc_hostname}"
-#   subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:apply"
-# }
+  application_id = azuread_application.tfc_application.id
+  display_name   = "${azuread_application.tfc_application.display_name}-${each.key}-apply"
+  audiences      = ["api://AzureADTokenExchange"]
+  issuer         = "https://${var.tfc_hostname}"
+  subject        = "organization:${var.tfc_organization_name}:project:${var.tfc_project_name}:stack:${var.tfc_stack_name}:deployment:${each.value}:operation:apply"
+}
