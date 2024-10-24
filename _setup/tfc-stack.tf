@@ -63,8 +63,8 @@ resource "tfe_stack" "demo" {
 }
 
 resource "tfe_variable_set" "stack_variable_set" {
-  name          = "${tfe_stack.demo.name}-Varset"
-  description   = "${tfe_stack.demo.name}-Varset"
+  name          = "${tfe_stack.demo.name}-varset"
+  description   = "${tfe_stack.demo.name}-varset"
   organization  = data.tfe_organization.stacks-org.name
 }
 
