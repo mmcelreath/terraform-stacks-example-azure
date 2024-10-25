@@ -29,8 +29,8 @@ The `_setup` directory contains the Terraform configuration files which will cre
   - Update `tfc_organization_name` and `tfc_project_name` to an existing Organization and Project in HCP Platform
   - Update `github_token` with a valid GitHub PAT token
   - Update `github_repo` with a valid GitHub Repository
-- Under `./_setup/tfstack.tf`
-- After setup, copy the `oidc_client_id` value from the Terraform Ouput and update the `client_id` input for each deployment
+- After setup, copy the `oidc_client_id` value from the Terraform Ouput and update the `client_id` input for each deployment under `./deployments.tfdeploy.hcl`
+- Update `subscription_id` and `tenant_id` under `./deployments.tfdeploy.hcl`
 
 ## Deploy Stack Configuration
 
