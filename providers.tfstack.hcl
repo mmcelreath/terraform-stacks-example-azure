@@ -18,7 +18,10 @@ variable "identity_token" {
   ephemeral = true
 }
 
-variable "client_id" { type = string }
+variable "client_id" { 
+  type = string
+  ephemeral = true
+}
 variable "subscription_id" { type = string }
 variable "tenant_id" { type = string }
 
