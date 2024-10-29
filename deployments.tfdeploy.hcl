@@ -5,15 +5,22 @@ identity_token "azurerm" {
   audience = ["api://AzureADTokenExchange"]
 }
 
+
+
+store "varset" "auth" {
+  id = "varset-7vfyQC6UvKY7f6gM"
+  category = "terraform"
+}
+
 deployment "dev" {
   inputs = {
     identity_token = identity_token.azurerm.jwt
 
     environment = "dev"
 
-    client_id       = "<OIDC_CLIENT_ID>"
-    subscription_id = "<SUBSCRIPTION_ID>"
-    tenant_id       = "<TENANT_ID>"
+    client_id       = store.varset.auth.oidc_client_id
+    subscription_id = store.varset.auth.subscription_id
+    tenant_id       = store.varset.auth.tenant_id
   }
 }
 
@@ -23,9 +30,9 @@ deployment "qa" {
 
     environment = "qa"
 
-    client_id       = "<OIDC_CLIENT_ID>"
-    subscription_id = "<SUBSCRIPTION_ID>"
-    tenant_id       = "<TENANT_ID>"
+    client_id       = store.varset.auth.oidc_client_id
+    subscription_id = store.varset.auth.subscription_id
+    tenant_id       = store.varset.auth.tenant_id
   }
 }
 
@@ -35,9 +42,9 @@ deployment "prod" {
 
     environment = "prod"
 
-    client_id       = "<OIDC_CLIENT_ID>"
-    subscription_id = "<SUBSCRIPTION_ID>"
-    tenant_id       = "<TENANT_ID>"
+    client_id       = store.varset.auth.oidc_client_id
+    subscription_id = store.varset.auth.subscription_id
+    tenant_id       = store.varset.auth.tenant_id
   }
 }
 
@@ -47,8 +54,8 @@ deployment "prod" {
 
 #     environment = "stg"
 
-#     client_id       = "<OIDC_CLIENT_ID>"
-#     subscription_id = "<SUBSCRIPTION_ID>"
-#     tenant_id       = "<TENANT_ID>"
+#     client_id       = store.varset.auth.oidc_client_id
+#     subscription_id = store.varset.auth.subscription_id
+#     tenant_id       = store.varset.auth.tenant_id
 #   }
 # }

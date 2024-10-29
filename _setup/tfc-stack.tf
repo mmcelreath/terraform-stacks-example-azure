@@ -54,40 +54,38 @@ resource "tfe_stack" "demo" {
 }
 
 
-# Uncomment if variables can be used in tfdeploy file
+resource "tfe_variable_set" "stack_variable_set" {
+  name          = "${tfe_stack.demo.name}-varset"
+  description   = "${tfe_stack.demo.name}-varset"
+  organization  = var.tfc_organization_name
+}
 
-# resource "tfe_variable_set" "stack_variable_set" {
-#   name          = "${tfe_stack.demo.name}-varset"
-#   description   = "${tfe_stack.demo.name}-varset"
-#   organization  = data.tfe_organization.stacks-org.name
-# }
+resource "tfe_project_variable_set" "stack_profile_variable_set" {
+  project_id    = data.tfe_project.stacks-proj.id
+  variable_set_id = tfe_variable_set.stack_variable_set.id
+}
 
-# resource "tfe_project_variable_set" "stack_profile_variable_set" {
-#   project_id    = data.tfe_project.stacks-proj.id
-#   variable_set_id = tfe_variable_set.stack_variable_set.id
-# }
+resource "tfe_variable" "oidc_client_id" {
+  key             = "oidc_client_id"
+  value           = azuread_service_principal.tfc_service_principal.client_id
+  category        = "terraform"
+  description     = "Client ID for the Azure Service Principal used by this Stack."
+  variable_set_id = tfe_variable_set.stack_variable_set.id
+}
 
-# resource "tfe_variable" "oidc_client_id" {
-#   key             = "oidc_client_id"
-#   value           = azuread_service_principal.tfc_service_principal.client_id
-#   category        = "terraform"
-#   description     = "Client ID for the Azure Service Principal used by this Stack."
-#   variable_set_id = tfe_variable_set.stack_variable_set.id
-# }
+resource "tfe_variable" "subscription_id" {
+  key             = "subscription_id"
+  value           = data.azurerm_subscription.current.subscription_id
+  category        = "terraform"
+  description     = "Subscription ID for the Azure Service Principal used by this Stack."
+  variable_set_id = tfe_variable_set.stack_variable_set.id
+}
 
-# resource "tfe_variable" "subscription_id" {
-#   key             = "subscription_id"
-#   value           = data.azurerm_subscription.current.subscription_id
-#   category        = "terraform"
-#   description     = "Subscription ID for the Azure Service Principal used by this Stack."
-#   variable_set_id = tfe_variable_set.stack_variable_set.id
-# }
-
-# resource "tfe_variable" "tenant_id" {
-#   key             = "tenant_id"
-#   value           = data.azurerm_subscription.current.tenant_id
-#   category        = "terraform"
-#   description     = "Subscription ID for the Azure Service Principal used by this Stack."
-#   variable_set_id = tfe_variable_set.stack_variable_set.id
-# }
+resource "tfe_variable" "tenant_id" {
+  key             = "tenant_id"
+  value           = data.azurerm_subscription.current.tenant_id
+  category        = "terraform"
+  description     = "Subscription ID for the Azure Service Principal used by this Stack."
+  variable_set_id = tfe_variable_set.stack_variable_set.id
+}
 
