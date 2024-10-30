@@ -8,7 +8,7 @@ identity_token "azurerm" {
 
 
 store "varset" "auth" {
-  id = "<Variable_Set_ID>"
+  id = "varset-D1qjhN8p8RCRh2G5"
   category = "terraform"
 }
 
