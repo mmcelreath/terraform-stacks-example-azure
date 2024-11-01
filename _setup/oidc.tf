@@ -30,7 +30,7 @@ data "azurerm_subscription" "current" {
 #
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application
 resource "azuread_application" "tfc_application" {
-  display_name = "terraform-stack-example-${random_string.demo.result}"
+  display_name = "${var.tfc_stack_name}-${random_string.demo.result}"
   owners       = [data.azuread_client_config.current.object_id]
 }
 
