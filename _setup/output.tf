@@ -6,6 +6,16 @@ output "stack_name" {
   value = tfe_stack.demo.name
 }
 
+output "stack_varibale_set_name" {
+  description = "Name of the Variable Set containing client, subscription and tenant details"
+  value = tfe_variable_set.stack_variable_set.name
+}
+
+output "stack_varibale_set_id" {
+  description = "ID of the Variable Set containing client, subscription and tenant details"
+  value = tfe_variable_set.stack_variable_set.id
+}
+
 output "subscription_id" {
   description = "Value for `subscription_id` attribute of `azurearm` provider config in the Stack."
   value       = data.azurerm_subscription.current.subscription_id
