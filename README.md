@@ -35,3 +35,5 @@ The `_setup` directory contains the Terraform configuration files which will cre
 ## Deploy Stack Configuration
 
 - Navigate to the deployed Stack in HCP Terraform and click `Fetch Configuration from VCS`
+
+-TBD
